@@ -80,4 +80,8 @@ module.exports = {
     })
   ],
 
+  eslint: {
+    emitWarnings: true
+  }
+
 };
