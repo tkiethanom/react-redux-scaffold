@@ -6,6 +6,8 @@ import WebpackDevServer from 'webpack-dev-server';
 import del from 'del';
 import RunSequnence from 'run-sequence';
 
+var rename = require("gulp-rename");
+
 const $ = gulpLoadPlugins();
 let options = {};
 
@@ -34,9 +36,14 @@ gulp.task('bundle:dist', (cb) => {
 });
 
 gulp.task('assets', (cb) => {
-  return gulp.src('src/public/**')
-    .pipe(gulp.dest('dist/')).
-    pipe($.size({title: 'assets'}));
+	gulp.src('src/public/**')
+		.pipe(gulp.dest('dist/'))
+		.pipe($.size({title: 'assets'}));
+	
+	gulp.src('src/index_production.html')
+		.pipe(rename('index.html'))
+		.pipe(gulp.dest('dist'))
+		.pipe($.size({title: 'index.html'}));
 });
 
 gulp.task('build', ['clean'], (cb) => {

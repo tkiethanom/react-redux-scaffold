@@ -6,9 +6,11 @@ import { Provider } from 'react-redux';
 import * as reducers from './reducers';
 import Routes from './Routes.js';
 
+require('./styles/main.scss');
+
 let finalCreateStore;
 
-if (__DEVTOOLS__) {
+if (typeof __DEVTOOLS__ !== 'undefined') {
   const { devTools } = require('redux-devtools');
   finalCreateStore = compose(
     applyMiddleware(thunk),
@@ -28,7 +30,7 @@ const store = finalCreateStore(reducer);
 export default class App extends Component {
   render() {
     let devtools = null;
-    if (__DEVTOOLS__) {
+    if (typeof __DEVTOOLS__ !== 'undefined') {
       const { DevTools, DebugPanel, LogMonitor } = require('redux-devtools/lib/react');
       devtools = (
         <DebugPanel top right bottom>

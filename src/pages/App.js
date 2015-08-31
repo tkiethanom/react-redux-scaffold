@@ -6,8 +6,7 @@ export default class App extends Component {
     	children: PropTypes.object
   	};
 
-  render() {
-  	console.log(this.props.location);
+  render() {  	
     return (
       <div>
         <Nav {...this.props} />
