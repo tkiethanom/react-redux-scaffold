@@ -47,7 +47,7 @@ export default class App extends Component {
       <div>
       	<div className="container-fluid">
 	        <Provider store={store}>
-	          {() => <Routes />}
+	          {() => <Routes history={history} />}
 	        </Provider>
         </div>
         {devtools}

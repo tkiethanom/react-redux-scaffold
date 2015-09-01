@@ -12,6 +12,7 @@
   "dependencies": {
     "babel": "5.8.21",
     "immutable": "^3.7.4",
+    "lodash": "^3.10.1",
     "normalize.css": "~3.0.3",
     "radium": "^0.13.7",
     "react": "0.13.x",
