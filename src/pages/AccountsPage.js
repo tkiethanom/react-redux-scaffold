@@ -6,6 +6,8 @@ import _ from 'lodash';
 import { addAccount } from '../actions/AccountActions';
 import AccountList from '../components/AccountList/AccountList';
 
+require('../styles/accounts/accounts.scss');
+
 
 export default class AccountsPage extends Component {	
 	render() {

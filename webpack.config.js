@@ -54,7 +54,7 @@ module.exports = {
       loader: 'react-hot!babel'
     }, {
       test: /\.scss/,
-      loader: 'style!css!autoprefixer!sass?outputStyle=expanded'
+      loader: 'style!css?sourceMap!autoprefixer!sass?outputStyle=expanded'
     }, {
       test: /\.css$/,
       exclude: [/\.raw\.css$/, /\.useable\.css$/, /node_module/],

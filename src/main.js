@@ -10,7 +10,7 @@ require('./styles/main.scss');
 
 let finalCreateStore;
 
-if (typeof __DEVTOOLS__ !== 'undefined') {
+if (typeof __DEVTOOLS__ !== 'undefined' && __DEVTOOLS__ === true) {
   const { devTools } = require('redux-devtools');
   finalCreateStore = compose(
     applyMiddleware(thunk),
@@ -33,8 +33,8 @@ console.log(store.getState());*/
 
 export default class App extends Component {
   render() {
-    let devtools = null;
-    if (typeof __DEVTOOLS__ !== 'undefined') {
+    let devtools = null;    
+    if (typeof __DEVTOOLS__ !== 'undefined' && __DEVTOOLS__ === true) {
       const { DevTools, DebugPanel, LogMonitor } = require('redux-devtools/lib/react');
       devtools = (
         <DebugPanel top right bottom>
