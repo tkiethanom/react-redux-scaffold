@@ -7,7 +7,7 @@ export default function todos(state = initialState, action = null) {
   const { type, payload } = action;
   switch (type) {
   case ActionTypes.ADD_TODO:
-    state.push({'text':action.text, 'completed':false});
+    state.push({'text': action.text, 'completed': false});
     return state;
   case ActionTypes.DELETE_TODO:
     return state.delete(payload.index);

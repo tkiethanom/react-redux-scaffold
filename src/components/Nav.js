@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 
 export default class Nav extends Component {
-	render() {
+	render() {		
 		return (
 			<div className="nav">
-				NAVSSS
+				Navigation
+				<ul>
+					<li className={this.props.location.pathname === '/' ? 'active' : ''}>Home</li>
+				</ul>
 			</div>
 		);
 	}
