@@ -9,3 +9,11 @@ blockquote {
 ul li.active{
 	font-weight: bold;
 }
+.fadeIn-appear {
+  opacity: 0.01;
+  transition: opacity .5s ease-in;
+}
+
+.fadeIn-appear.fadeIn-appear-active {
+  opacity: 1;
+}

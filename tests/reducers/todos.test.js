@@ -16,7 +16,12 @@ describe('todos reducer', () => {
 			}]);
 		});
 
-	it('should handle ADD_TODO', () => {
+	it('should handle ADD_TODO', () => { 
+console.log(todos([], {
+				type: types.ADD_TODO,
+				text: 'Run the tests'
+			}));
+
 		expect(
 			todos([], {
 				type: types.ADD_TODO,

@@ -1,9 +1,11 @@
-import FirstPage from './FirstPage.js';
-import TodosPage from './TodosPage.js';
 import AppPage from './AppPage.js';
+import HomePage from './HomePage.js';
+import AccountsPage from './AccountsPage.js';
+import CampaignsPage from './CampaignsPage.js';
 
 export {
 	AppPage,
-	FirstPage,
-	TodosPage
+	HomePage,
+	AccountsPage,
+	CampaignsPage
 };

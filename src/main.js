@@ -27,6 +27,10 @@ if (typeof __DEVTOOLS__ !== 'undefined') {
 const reducer = combineReducers(reducers);
 const store = finalCreateStore(reducer);
 
+/*import { addAccount } from './actions/AccountActions';
+store.dispatch(addAccount('Learn about actions'));
+console.log(store.getState());*/
+
 export default class App extends Component {
   render() {
     let devtools = null;
@@ -41,9 +45,11 @@ export default class App extends Component {
     }
     return (
       <div>
-        <Provider store={store}>
-          {() => <Routes />}
-        </Provider>
+      	<div className="container-fluid">
+	        <Provider store={store}>
+	          {() => <Routes />}
+	        </Provider>
+        </div>
         {devtools}
       </div>
     );

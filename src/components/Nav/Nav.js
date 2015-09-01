@@ -4,11 +4,11 @@ import { Link } from 'react-router';
 export default class Nav extends Component {
 	render() {
 		return (
-			<div className="nav">
-				<ul>
+			<div className="navbar navbar-default">
+				<ul className="nav navbar-nav">
 					<li className={this.props.location.pathname === '/' ? 'active' : ''}><Link to="/">Home</Link></li>
-          <li className={this.props.location.pathname === '/page' ? 'active' : ''}><Link to="/page">Page</Link></li>
-          <li className={this.props.location.pathname === '/todos' ? 'active' : ''}><Link to="/todos">Todos</Link></li>
+          			<li className={this.props.location.pathname === '/accounts' ? 'active' : ''}><Link to="/accounts">Accounts</Link></li>
+          			<li className={this.props.location.pathname === '/campaigns' ? 'active' : ''}><Link to="/campaigns">Campaigns</Link></li>
 				</ul>
 			</div>
 		);

@@ -4,15 +4,16 @@ import React, { Component } from 'react';
 import { Router, Route } from 'react-router';
 import { history } from 'react-router/lib/HashHistory';
 
-import { AppPage, FirstPage, TodosPage } from './pages';
+import { AppPage, HomePage, AccountsPage, CampaignsPage } from './pages';
 
 export default class App extends Component {
   render() {
     return (
       <Router history={history}>
-      	<Route path="/" component={AppPage}>
-      		<Route path="/page" component={FirstPage}></Route>
-        	<Route path="/todos" component={TodosPage}></Route>
+      	<Route component={AppPage}>
+      		<Route path="/" component={HomePage}></Route>
+      		<Route path="/accounts" component={AccountsPage}></Route>
+        	<Route path="/campaigns" component={CampaignsPage}></Route>
       	</Route>
       </Router>
     );
