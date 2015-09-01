@@ -1,9 +1,9 @@
-import IndexPage from './IndexPage.js';
+import FirstPage from './FirstPage.js';
 import TodosPage from './TodosPage.js';
-import App from './App.js';
+import AppPage from './AppPage.js';
 
 export {
-	App,
-	IndexPage,
+	AppPage,
+	FirstPage,
 	TodosPage
 };

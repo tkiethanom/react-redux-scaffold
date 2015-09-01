@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
-import Nav from '../components/Nav.js';
+import Nav from '../components/Nav/Nav.js';
 
-export default class App extends Component {
+export default class AppPage extends Component {
 	static propTypes = {
     	children: PropTypes.object
   	};
 
-  render() {  	
+  render() {
     return (
       <div>
         <Nav {...this.props} />

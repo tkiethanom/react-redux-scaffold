@@ -12,10 +12,9 @@ module.exports = function (config) {
       'tests.webpack.js': [ 'webpack', 'sourcemap' ] //preprocess with webpack and our sourcemap loader
     },
     reporters: [ 'dots' ], //report results in this format
-    autoWatch: true,    
+    autoWatch: true,
     webpack: { //kind of a copy of your webpack config
         resolve: {
-            
             alias: {
                 'styles': __dirname + '/src/styles',
                 'components': __dirname + '/src/components/',

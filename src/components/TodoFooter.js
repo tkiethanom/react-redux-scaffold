@@ -12,7 +12,11 @@ export default class TodoFooter extends Component {
 
   render() {
     const { todos, filter, setFilter } = this.props;
-    const count = todos.count((todo) => !todo.get('completed'));
+    let count;
+
+    if (undefined !== todos) {
+      this.count = todos.count((todo) => !todo.get('completed'));
+    }
 
     return (
       <footer className="footer">

@@ -1,12 +1,12 @@
 import expect from 'expect';
 import { List, Map } from 'immutable';
-import reducer from '../../src/reducers/todos';
+import { todos } from '../../src/reducers/todos';
 import * as types from '../../src/constants/ActionTypes';
 
 describe('todos reducer', () => {
 	it('should return the initial state', () => {
 		expect(
-			reducer(undefined, {}).toJS()
+			todos(undefined, {}).toJS()
 			).toEqual([{
 				text: 'my first todo',
 				completed: false
@@ -18,7 +18,7 @@ describe('todos reducer', () => {
 
 	it('should handle ADD_TODO', () => {
 		expect(
-			reducer([], {
+			todos([], {
 				type: types.ADD_TODO,
 				text: 'Run the tests'
 			})
@@ -28,7 +28,7 @@ describe('todos reducer', () => {
 			}]);
 
 			expect(
-				reducer([{
+				todos([{
 					text: 'Use Redux',
 					completed: false,
 				}], {
@@ -41,6 +41,6 @@ describe('todos reducer', () => {
 				}, {
 					text: 'Run the tests',
 					completed: false,
-				}]);	
+				}]);
 	});
 });
