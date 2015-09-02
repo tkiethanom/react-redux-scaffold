@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
-import thunk from 'redux-thunk';
+import thunkMiddleware from 'redux-thunk';
+import loggerMiddleware from 'redux-logger';
 import { Provider } from 'react-redux';
 
 import * as reducers from './reducers';
@@ -13,13 +14,18 @@ let finalCreateStore;
 if (typeof __DEVTOOLS__ !== 'undefined' && __DEVTOOLS__ === true) {
   const { devTools } = require('redux-devtools');
   finalCreateStore = compose(
-    applyMiddleware(thunk),
+    applyMiddleware(
+    	thunkMiddleware,
+    	loggerMiddleware
+	),
     devTools(),
     createStore
   );
 } else {
   finalCreateStore = compose(
-    applyMiddleware(thunk),
+    applyMiddleware(
+    	thunkMiddleware
+	),
     createStore
   );
 }
