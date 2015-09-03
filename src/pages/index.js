@@ -1,11 +1,14 @@
 import AppPage from './AppPage.js';
 import HomePage from './HomePage.js';
-import AccountsPage from './AccountsPage.js';
+import AccountsPage from './Accounts/AccountsPage.js';
+import AccountsAddPage from './Accounts/AccountsAddPage.js';
 import CampaignsPage from './CampaignsPage.js';
 
 export {
 	AppPage,
 	HomePage,
 	AccountsPage,
+	AccountsAddPage,
 	CampaignsPage
 };
+

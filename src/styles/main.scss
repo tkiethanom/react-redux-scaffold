@@ -15,3 +15,12 @@ blockquote {
 .fadeIn-appear.fadeIn-appear-active {
   opacity: 1;
 }
+
+.fadeIn-leave {
+  opacity: 1;
+  transition: opacity 1s ease-in;
+}
+
+.fadeIn-leave.fadeIn-leave-active {
+  opacity: 0.01;
+}

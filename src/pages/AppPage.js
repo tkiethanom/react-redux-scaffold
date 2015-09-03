@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import Nav from '../components/Nav/Nav.js';
+import Nav from 'components/Nav/Nav.js';
 
 export default class AppPage extends Component {
 	static propTypes = {
@@ -10,7 +10,9 @@ export default class AppPage extends Component {
     return (
       <div>
         <Nav {...this.props} />
-        {this.props.children}
+        <div className="container">
+        	{this.props.children}
+        </div>
       </div>
     );
   }

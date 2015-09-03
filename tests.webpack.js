@@ -4,6 +4,6 @@
 //USE TO REQUIRE SPECIFIC TESTS
 //var context = require.context('./tests', true, /main.test.js/); 
 //var context = require.context('./tests/actions', true, /TodosAction.test.js/); 
-var context = require.context('./tests/reducers', true, /todos.test.js/); 
+var context = require.context('./tests/reducers', true, /AccountReducers.test.js/); 
 
 context.keys().forEach(context);
