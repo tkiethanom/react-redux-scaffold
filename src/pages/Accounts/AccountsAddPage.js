@@ -1,8 +1,6 @@
 import React, { Component } from 'react/addons';
 import { connect } from 'react-redux';
 
-import { Link } from 'react-router';
-
 require('styles/Accounts/accounts.scss');
 
 export default class AccountsAddPage extends Component {	
@@ -33,7 +31,7 @@ AccountsAddPage.propTypes = {
 // Note: use https://github.com/faassen/reselect for better performance.
 function select(state) {	
   return {
-  	AccountReducers: state.AccountReducers
+  	Account: state.Account
   };
 }
 

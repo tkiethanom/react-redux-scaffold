@@ -1,3 +1,3 @@
-import { AccountReducers } from './AccountReducers.js';
+import { Account } from './AccountReducer.js';
 
-export { AccountReducers };
+export { Account };

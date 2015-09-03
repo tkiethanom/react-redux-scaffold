@@ -12,7 +12,7 @@ require('styles/Accounts/accounts.scss');
 export default class AccountsPage extends Component {	
 	componentDidMount() {
     	const { dispatch } = this.props;
-    	if (this.props.AccountReducers.accountRows.length === 0) {
+    	if (this.props.Account.accountRows.length === 0) {
 			dispatch(fetchAccounts());
     	}
   	}
@@ -29,8 +29,8 @@ export default class AccountsPage extends Component {
 	        			<div className="pull-right" >
 							<Link to="/accounts/add">Add</Link>
 	        			</div>
-        				<AccountForm onAddClick={text => dispatch(saveAccount(text))} isSavingAccount={this.props.AccountReducers.isSavingAccount}/>     			
-	        			<AccountList accountRows={this.props.AccountReducers.accountRows}/>
+        				<AccountForm onAddClick={text => dispatch(saveAccount(text))} isSavingAccount={this.props.Account.isSavingAccount}/>     			
+	        			<AccountList accountRows={this.props.Account.accountRows}/>
         			</div>
       			</ReactCSSTransitionGroup>
 			</div>
@@ -46,7 +46,7 @@ AccountsPage.propTypes = {
 // Note: use https://github.com/faassen/reselect for better performance.
 function select(state) {	
   return {
-  	AccountReducers: state.AccountReducers
+  	Account: state.Account
   };
 }
 

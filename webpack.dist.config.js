@@ -39,11 +39,11 @@ module.exports = {
     }
   },
   module: {
-    preLoaders: [{
+    /*preLoaders: [{
       test: /\.(js|jsx)$/,
       exclude: [/node_module/, 'server.js', 'mock/*'],
       loader: 'eslint'
-    }],
+    }],*/
     loaders: [{
       test: /\.(js|jsx)$/,
       exclude: /node_modules/,

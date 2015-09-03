@@ -12,22 +12,31 @@ require('./styles/main.scss');
 let finalCreateStore;
 
 if (typeof __DEVTOOLS__ !== 'undefined' && __DEVTOOLS__ === true) {
-  const { devTools } = require('redux-devtools');
-  finalCreateStore = compose(
-    applyMiddleware(
-    	thunkMiddleware,
-    	loggerMiddleware
-	),
-    devTools(),
-    createStore
-  );
+	const { devTools } = require('redux-devtools');
+	finalCreateStore = compose(
+		applyMiddleware(
+			thunkMiddleware,
+			loggerMiddleware
+		),
+		devTools(),
+		createStore
+	);	
+} else if((typeof __DEVTOOLS__ === 'undefined' || __DEVTOOLS__ === false) && 
+		(typeof __DEVELOPMENT__ !== 'undefined' || __DEVELOPMENT__ === true)){
+	finalCreateStore = compose(
+		applyMiddleware(
+			thunkMiddleware,
+			loggerMiddleware
+		),
+		createStore
+	);
 } else {
-  finalCreateStore = compose(
-    applyMiddleware(
-    	thunkMiddleware
-	),
-    createStore
-  );
+	finalCreateStore = compose(
+		applyMiddleware(
+			thunkMiddleware
+		),
+		createStore
+	);
 }
 
 const reducer = combineReducers(reducers);
@@ -40,26 +49,26 @@ const store = finalCreateStore(reducer);
 //store.dispatch(fetchPosts());
 
 export default class App extends Component {
-  render() {
-    let devtools = null;    
-    if (typeof __DEVTOOLS__ !== 'undefined' && __DEVTOOLS__ === true) {
-      const { DevTools, DebugPanel, LogMonitor } = require('redux-devtools/lib/react');
-      devtools = (
-        <DebugPanel top right bottom>
-          <DevTools store={store}
-                    monitor={LogMonitor} />
-        </DebugPanel>
-      );
-    }
-    return (
-      <div>
-        <Provider store={store}>
-          {() => <Routes history={history} />}
-        </Provider>
-        {devtools}
-      </div>
-    );
-  }
+	render() {
+		let devtools = null;    
+		if (typeof __DEVTOOLS__ !== 'undefined' && __DEVTOOLS__ === true) {
+			const { DevTools, DebugPanel, LogMonitor } = require('redux-devtools/lib/react');
+			devtools = (
+				<DebugPanel top right bottom>
+					<DevTools store={store}
+					monitor={LogMonitor} />
+				</DebugPanel>
+			);
+		}
+		return (
+			<div>
+				<Provider store={store}>
+					{() => <Routes history={history} />}
+				</Provider>
+				{devtools}
+			</div>
+		);
+	}
 }
 
 React.render(<App />, document.body);

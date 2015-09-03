@@ -17,8 +17,8 @@ export default class AccountForm extends Component {
 		//Using lodash to check if Object is empty
 		if (!_.isEmpty(this.refs.input)) {
 			const node = findDOMNode(this.refs.input);
-		    const text = node.value.trim();		    
-		    this.props.onAddClick(text);
+		    const data = {text: node.value.trim()};		    
+		    this.props.onAddClick(data);
 		    node.value = '';	
 		}
   	}

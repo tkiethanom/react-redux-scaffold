@@ -6,6 +6,9 @@ export const RECEIVE_ADD_ACCOUNT = 'RECEIVE_ADD_ACCOUNT';
 export const REQUEST_ACCOUNTS = 'REQUEST_ACCOUNTS';
 export const RECEIVE_ACCOUNTS = 'RECEIVE_ACCOUNTS';
 
+export const REQUEST_ACCOUNT_VIEW = 'REQUEST_ACCOUNT_VIEW';
+export const RECEIVE_ACCOUNT_VIEW = 'RECEIVE_ACCOUNT_VIEW';
+
 function requestAddAccount() {
 	return { type: REQUEST_ADD_ACCOUNT };
 }
@@ -24,6 +27,34 @@ function receiveAccounts(json) {
   	};
 }
 
+function requestAccountView() {
+	return { type: REQUEST_ACCOUNT_VIEW };
+}
+function receiveAccountView(json) {	
+  	return {
+	    type: RECEIVE_ACCOUNT_VIEW,
+	    accountDetails: json.result
+  	};
+}
+
+export function fetchAccountView(accountId) {
+  // thunk middleware knows how to handle functions
+  return function next(dispatch) {
+  	dispatch(requestAccountView());
+    // Return a promise to wait for
+    // (this is not required by thunk middleware, but it is convenient for us)    
+    return fetch('http://localhost:9999/public/mock/account.json?accountId=' + accountId)
+    //return fetch('http://tbg-staging-1.thebuddygroup.com:5000/api/accounts')
+      .then(response => response.json())
+      .then(json =>
+        // We can dispatch many times!
+        setTimeout(() => {
+        	dispatch(receiveAccountView(json));
+    	}, 1000)
+      );
+  };
+}
+
 export function fetchAccounts() {
   // thunk middleware knows how to handle functions
   return function next(dispatch) {
@@ -31,6 +62,7 @@ export function fetchAccounts() {
     // Return a promise to wait for
     // (this is not required by thunk middleware, but it is convenient for us)    
     return fetch('http://localhost:9999/public/mock/accounts.json')
+    //return fetch('http://tbg-staging-1.thebuddygroup.com:5000/api/accounts')
       .then(response => response.json())
       .then(json =>
         // We can dispatch many times!
@@ -41,7 +73,7 @@ export function fetchAccounts() {
   };
 }
 
-export function saveAccount(text) {
+export function saveAccount(data) {
   // thunk middleware knows how to handle functions
   return function next(dispatch) {
   	dispatch(requestAddAccount());
@@ -56,7 +88,7 @@ export function saveAccount(text) {
 	            'created_at': '', 
 	            'email': 'test@gmail.com', 
 	            'id': 99, 
-	            'name': text, 
+	            'name': data.text, 
 	            'phone': '+1(888)0000000'
         	}));
     	}, 1000)

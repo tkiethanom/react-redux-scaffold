@@ -43,11 +43,11 @@ module.exports = {
     }
   },
   module: {
-   /* preLoaders: [{
+    preLoaders: [{
       test: /\.(js|jsx)$/,
       exclude: [/node_module/, 'server.js', 'mock/*'],
       loader: 'eslint'
-    }],*/
+    }],
     loaders: [{
       test: /\.(js|jsx)$/,
       exclude: /node_modules/,
@@ -76,7 +76,7 @@ module.exports = {
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       __DEVELOPMENT__: true,
-      __DEVTOOLS__: true  // <-------- DISABLE redux-devtools HERE
+      __DEVTOOLS__: false  // <-------- DISABLE redux-devtools HERE
     })
   ],
 

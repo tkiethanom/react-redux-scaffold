@@ -15,6 +15,9 @@
     "no-wrap-func": 0,
     "no-trailing-spaces":0,
     "spaced-comment": 0,
+    "eol-last": 0,
+    "space-before-blocks": 0,
+    "space-after-keywords": 0,
     // disabled dueto eslint error
     "no-duplicate-case": 0
   },
