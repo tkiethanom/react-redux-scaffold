@@ -14,17 +14,17 @@ import {
 } from './pages';
 
 export default class App extends Component {
-  render() {
+  render() {  	
     return (
       <Router history={history}>
       	<Route component={AppPage}>      		
-      		<Route path="/" component={HomePage}></Route>
+      		<Route path="/" title="Home" component={HomePage}></Route>
       		
-      		<Route path="/accounts" component={AccountsPage}></Route>
-      		<Route path="/accounts/:accountId" component={AccountsViewPage}></Route>
-  			<Route path="/accounts/add" component={AccountsAddPage}></Route>
+      		<Route path="/accounts" title="Accounts" component={AccountsPage}></Route>
+      		<Route path="/accounts/add" title="Account Add" component={AccountsAddPage}></Route>
+      		<Route path="/accounts/:accountId" title="Account View" component={AccountsViewPage}></Route>
       		
-        	<Route path="/campaigns" component={CampaignsPage}></Route>
+        	<Route path="/campaigns" title="Campaigns" component={CampaignsPage}></Route>
       	</Route>
       </Router>
     );

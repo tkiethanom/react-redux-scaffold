@@ -4,7 +4,7 @@ import AccountRow from './AccountRow';
 export default class AccountList extends Component {
 	render() {
 		let rows;
-		if (this.props.accountRows.length > 0) {
+		if (this.props.isFetchingAccounts === false) {
 			rows = this.props.accountRows.map((accountRow, index) =>
 						<AccountRow {...accountRow} key={index} />
 					);

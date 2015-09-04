@@ -21,6 +21,18 @@ export default class AccountsViewPage extends Component {
 	render() {
 		const ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 		const data = this.props.Account.accountDetails;
+
+		let details;
+		if (this.props.Account.isFetchingAccountView === false) {
+			details = (<div className="accound-details">
+	        				<div>Id: {data.id}</div>
+	        				<div>Name: {data.name}</div>
+	        				<div>Email: {data.email}</div>
+	        				<div>Phone: {data.phone}</div>
+	        			</div>);
+		} else {
+			details = <div><img src="./public/img/ajax-loader.gif" /></div>;
+		}
  
 		return (
 			<div>
@@ -30,12 +42,7 @@ export default class AccountsViewPage extends Component {
 	        			<div className="pull-right" >
 							<Link to="/campaigns/add">Add Campaign</Link>
 	        			</div>
-	        			<div className="accound-details">
-	        				<div>Id: {data.id}</div>
-	        				<div>Name: {data.name}</div>
-	        				<div>Email: {data.email}</div>
-	        				<div>Phone: {data.phone}</div>
-	        			</div>
+	        			{details}
         			</div>
       			</ReactCSSTransitionGroup>
 			</div>

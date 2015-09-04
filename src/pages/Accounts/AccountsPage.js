@@ -10,7 +10,7 @@ import { Link } from 'react-router';
 require('styles/Accounts/accounts.scss');
 
 export default class AccountsPage extends Component {	
-	componentDidMount() {
+	componentDidMount() {				
     	const { dispatch } = this.props;
     	if (this.props.Account.accountRows.length === 0) {
 			dispatch(fetchAccounts());
@@ -27,10 +27,10 @@ export default class AccountsPage extends Component {
 					<div>
 	        			<h1>Accounts</h1>
 	        			<div className="pull-right" >
-							<Link to="/accounts/add">Add</Link>
+							<Link to="/accounts/add">Add Account</Link>
 	        			</div>
-        				<AccountForm onAddClick={text => dispatch(saveAccount(text))} isSavingAccount={this.props.Account.isSavingAccount}/>     			
-	        			<AccountList accountRows={this.props.Account.accountRows}/>
+        				<AccountForm onAddClick={text => dispatch(saveAccount(text))} isSavingAccount={this.props.Account.isSavingAccount} />
+	        			<AccountList accountRows={this.props.Account.accountRows} isFetchingAccounts={this.props.Account.isFetchingAccounts} />
         			</div>
       			</ReactCSSTransitionGroup>
 			</div>

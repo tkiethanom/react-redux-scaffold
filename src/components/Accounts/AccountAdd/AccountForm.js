@@ -4,15 +4,15 @@ import _ from 'lodash';
 export default class AccountForm extends Component {
 	render() {
 		return (
-			<form onSubmit={e => this.handleSubmit(e)}>
-		 		<input type="text" ref="input" />
-				<input type="submit" value="Add" />
-				{(this.props.isSavingAccount) ? <img src="./public/img/ajax-loader.gif" /> : ''}				
-			</form>
+			<div>
+			 		<input type="text" ref="input" onKeyDown={(e) => this.handleEnter(e)} />
+					<input type="submit" value="Add" onClick={(e) => this.handleSubmit(e)} />
+					{(this.props.isSavingAccount) ? <img src="./public/img/ajax-loader.gif" /> : ''}				
+			</div>
 		);
 	}
 
-	handleSubmit(e) {
+	handleSubmit(e) {		
 		e.preventDefault();
 		//Using lodash to check if Object is empty
 		if (!_.isEmpty(this.refs.input)) {
@@ -21,6 +21,13 @@ export default class AccountForm extends Component {
 		    this.props.onAddClick(data);
 		    node.value = '';	
 		}
+  	}
+
+  	handleEnter(e) {  		
+  		const text = e.target.value.trim();
+  		if (e.which === 13) {
+  			this.handleSubmit(e);
+  		}
   	}
 }
 
