@@ -37,7 +37,7 @@ function receiveAccountView(json) {
   	};
 }
 
-export function fetchAccountView(accountId, callback) {	
+export function fetchAccountView(accountId) {	
   	// thunk middleware knows how to handle functions
   	return function next(dispatch) {
 	  	dispatch(requestAccountView());
@@ -46,13 +46,11 @@ export function fetchAccountView(accountId, callback) {
 	    return fetch('http://localhost:9999/public/mock/account_' + accountId + '.json')
 	    //return fetch('http://tbg-staging-1.thebuddygroup.com:5000/api/accounts')
 	    .then(response => response.json())
-	    .then(json =>
+	    .then(json => new promise(resolve => {
 	        // We can dispatch many times!
 	        setTimeout(() => {
 	        	dispatch(receiveAccountView(json));
-	        	if(typeof callback === 'function'){
-	        		callback();
-	        	}
+	        	resolve();	        	
 	        }, 1000)
 	    );
 	};
