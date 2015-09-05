@@ -1,6 +1,7 @@
 import React, { Component } from 'react/addons';
 import { connect } from 'react-redux';
 
+import { pageVisit } from 'actions/AppActions';
 import { saveAccount, fetchAccounts } from 'actions/Accounts/AccountActions';
 import AccountList from 'components/Accounts/AccountList/AccountList';
 import AccountForm from 'components/Accounts/AccountAdd/AccountForm';
@@ -10,7 +11,9 @@ import { Link } from 'react-router';
 require('styles/Accounts/accounts.scss');
 
 export default class AccountsPage extends Component {	
-	componentDidMount() {				
+	componentDidMount() {						
+		pageVisit('Accounts', this);
+
     	const { dispatch } = this.props;
     	if (this.props.Account.accountRows.length === 0) {
 			dispatch(fetchAccounts());

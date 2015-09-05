@@ -9,44 +9,10 @@ import Routes from './Routes.js';
 
 require('./styles/main.scss');
 
-let finalCreateStore;
-
-if (typeof __DEVTOOLS__ !== 'undefined' && __DEVTOOLS__ === true) {
-	const { devTools } = require('redux-devtools');
-	finalCreateStore = compose(
-		applyMiddleware(
-			thunkMiddleware,
-			loggerMiddleware
-		),
-		devTools(),
-		createStore
-	);	
-} else if((typeof __DEVTOOLS__ === 'undefined' || __DEVTOOLS__ === false) && 
-		(typeof __DEVELOPMENT__ !== 'undefined' || __DEVELOPMENT__ === true)){
-	finalCreateStore = compose(
-		applyMiddleware(
-			thunkMiddleware,
-			loggerMiddleware
-		),
-		createStore
-	);
-} else {
-	finalCreateStore = compose(
-		applyMiddleware(
-			thunkMiddleware
-		),
-		createStore
-	);
-}
+import { finalCreateStore } from './finalCreateStore';
 
 const reducer = combineReducers(reducers);
 const store = finalCreateStore(reducer);
-
-//import { fetchPosts } from './actions/AccountActions';
-//store.dispatch(addAccount('Learn about actions'));
-//console.log(store.getState());
-
-//store.dispatch(fetchPosts());
 
 export default class App extends Component {
 	render() {

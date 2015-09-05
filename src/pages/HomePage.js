@@ -2,7 +2,9 @@ import React, { Component } from 'react/addons';
 import { connect } from 'react-redux';
 
 import { fetchAccounts } from 'actions/Accounts/AccountActions';
+import { fetchRecentlyViewed } from 'actions/AppActions';
 import AccountList from 'components/Accounts/AccountList/AccountList';
+import RecentlyViewedList from 'components/App/RecentlyViewed/RecentlyViewedList';
 
 export default class HomePage extends Component {
 	componentDidMount() {
@@ -10,6 +12,8 @@ export default class HomePage extends Component {
     	if (this.props.Account.accountRows.length === 0) {
 			dispatch(fetchAccounts());
     	}
+
+    	dispatch(fetchRecentlyViewed());
   	}
 
 	render() {
@@ -21,6 +25,7 @@ export default class HomePage extends Component {
         			<h1>Home</h1>
 
         			<AccountList accountRows={this.props.Account.accountRows} isFetchingAccounts={this.props.Account.isFetchingAccounts} />
+        			<RecentlyViewedList recentlyViewedRows={this.props.App.recentlyViewed} />
       			</ReactCSSTransitionGroup>
 			</div>
 		);
@@ -35,7 +40,8 @@ HomePage.propTypes = {
 // Note: use https://github.com/faassen/reselect for better performance.
 function select(state) {	
   return {
-  	Account: state.Account
+  	Account: state.Account,
+  	App: state.App
   };
 }
 

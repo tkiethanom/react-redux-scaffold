@@ -1,6 +1,11 @@
 import React, { Component } from 'react/addons';
+import { pageVisit } from 'actions/AppActions';
 
 export default class CampaignsPage extends Component {
+	componentDidMount() {    	
+		pageVisit('Campaigns', this);
+  	}
+
 	render() {
 		const ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
