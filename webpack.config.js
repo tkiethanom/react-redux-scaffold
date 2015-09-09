@@ -57,8 +57,8 @@ module.exports = {
       loader: 'style!css?sourceMap!autoprefixer!sass?outputStyle=expanded'
     }, {
       test: /\.css$/,
-      exclude: [/\.raw\.css$/, /\.useable\.css$/, /node_module/],
-      loader: 'style!css!autoprefixer'
+      exclude: [/\.raw\.css$/, /\.useable\.css$/],
+      loader: 'style!css?sourceMap!autoprefixer'
     }, {
       test: /\.useable\.css$/,
       loader: 'style/useable!raw!autoprefixer'

@@ -5,16 +5,24 @@ import { fetchAccounts } from 'actions/Accounts/AccountActions';
 import { fetchRecentlyViewed } from 'actions/AppActions';
 import AccountList from 'components/Accounts/AccountList/AccountList';
 import RecentlyViewedList from 'components/App/RecentlyViewed/RecentlyViewedList';
+import Calendar from 'rc-calendar';
+import 'rc-calendar/assets/index.css';
+
+import GregorianCalendar from 'gregorian-calendar';
+const date = new GregorianCalendar(); // defaults to en-us
+date.setTime(+new Date('2015-09-14 13:00:00'));
+//console.log(date.getDayOfWeek());
+
 
 export default class HomePage extends Component {
 	componentDidMount() {
-    	const { dispatch } = this.props;
-    	if (this.props.Account.accountRows.length === 0) {
+		const { dispatch } = this.props;
+		if (this.props.Account.accountRows.length === 0) {
 			dispatch(fetchAccounts());
-    	}
+		}
 
-    	dispatch(fetchRecentlyViewed());
-  	}
+		dispatch(fetchRecentlyViewed());
+	}
 
 	render() {
 		const ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
@@ -22,27 +30,31 @@ export default class HomePage extends Component {
 		return (
 			<div>
 				<ReactCSSTransitionGroup transitionName="fadeIn" transitionAppear={true}>
-        			<h1>Home</h1>
+					<h1>Home</h1>
 
-        			<AccountList accountRows={this.props.Account.accountRows} isFetchingAccounts={this.props.Account.isFetchingAccounts} />
-        			<RecentlyViewedList recentlyViewedRows={this.props.App.recentlyViewed} />
-      			</ReactCSSTransitionGroup>
+					<AccountList accountRows={this.props.Account.accountRows}
+								 isFetchingAccounts={this.props.Account.isFetchingAccounts}/>
+					<RecentlyViewedList recentlyViewedRows={this.props.App.recentlyViewed}/>
+					<Calendar defaultValue={date} showToday={true} onSelect={ (gCal) => this.handleDateSelect(gCal) } />
+				</ReactCSSTransitionGroup>
 			</div>
 		);
 	}
+
+	handleDateSelect(gCal){
+		console.log(new Date(gCal.getTime() ) );
+	}
 }
 
-HomePage.propTypes = {
-  	
-};
+HomePage.propTypes = {};
 
 // Which props do we want to inject, given the global state?
 // Note: use https://github.com/faassen/reselect for better performance.
-function select(state) {	
-  return {
-  	Account: state.Account,
-  	App: state.App
-  };
+function select(state) {
+	return {
+		Account: state.Account,
+		App: state.App
+	};
 }
 
 // Wrap the component to inject dispatch and state into it
