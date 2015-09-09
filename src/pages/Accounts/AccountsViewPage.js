@@ -18,10 +18,9 @@ export default class AccountsViewPage extends Component {
     	const accountId = parseInt(this.props.params.accountId, 10);
 
     	if(_.isEmpty(data) || accountId !== data.id){
-    		dispatch(fetchAccountView(this.props.params.accountId, () => {    				
-    				pageVisit('Account - ' + this.props.Account.accountDetails.name, this);
-    			})
-    		);
+    		dispatch(fetchAccountView(this.props.params.accountId)).then(() => {    
+    			pageVisit('Account - ' + this.props.Account.accountDetails.name, this);    				
+			});
     	} else {
     		pageVisit('Account - ' + this.props.Account.accountDetails.name, this);
     	}

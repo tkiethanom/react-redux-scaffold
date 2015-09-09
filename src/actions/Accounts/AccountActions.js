@@ -46,13 +46,13 @@ export function fetchAccountView(accountId) {
 	    return fetch('http://localhost:9999/public/mock/account_' + accountId + '.json')
 	    //return fetch('http://tbg-staging-1.thebuddygroup.com:5000/api/accounts')
 	    .then(response => response.json())
-	    .then(json => new promise(resolve => {
+	    .then(json => new Promise(resolve => {
 	        // We can dispatch many times!
 	        setTimeout(() => {
 	        	dispatch(receiveAccountView(json));
-	        	resolve();	        	
-	        }, 1000)
-	    );
+	        	resolve();
+	        }, 1000);
+    	}));
 	};
 }
 
@@ -80,7 +80,17 @@ export function saveAccount(data) {
 	  	dispatch(requestAddAccount());
 	    // Return a promise to wait for
 	    // (this is not required by thunk middleware, but it is convenient for us)
-	    return fetch('http://localhost:9999/public/mock/accounts.json')
+	    /*return fetch('http://localhost:9999/public/mock/accounts.json', {
+	    	method: 'post',
+	    	headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				name: data.text				
+			})
+	    })*/
+		return fetch('http://localhost:9999/public/mock/accounts.json')
 	      .then(response => response.json())
 	      .then(() =>
 	        // We can dispatch many times!
