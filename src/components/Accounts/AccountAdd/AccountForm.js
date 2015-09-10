@@ -7,23 +7,23 @@ export default class AccountForm extends Component {
 			<div>
 			 		<input type="text" ref="input" onKeyDown={(e) => this.handleEnter(e)} />
 					<input type="submit" value="Add" onClick={(e) => this.handleSubmit(e)} />
-					{(this.props.isSavingAccount) ? <img src="./public/img/ajax-loader.gif" /> : ''}				
+					{(this.props.isSavingAccount) ? <img src="./public/img/ajax-loader.gif" /> : ''}
 			</div>
 		);
 	}
 
-	handleSubmit(e) {		
+	handleSubmit(e) {
 		e.preventDefault();
 		//Using lodash to check if Object is empty
 		if (!_.isEmpty(this.refs.input)) {
 			const node = findDOMNode(this.refs.input);
-		    const data = {text: node.value.trim()};		    
-		    this.props.onAddClick(data);
-		    node.value = '';	
+			const data = {text: node.value.trim()};
+			this.props.onAddClick(data);
+			node.value = '';
 		}
   	}
 
-  	handleEnter(e) {  		
+  	handleEnter(e) {
   		const text = e.target.value.trim();
   		if (e.which === 13) {
   			this.handleSubmit(e);
@@ -31,7 +31,7 @@ export default class AccountForm extends Component {
   	}
 }
 
-AccountForm.propTypes = {	
+AccountForm.propTypes = {
 	onAddClick: PropTypes.func.isRequired,
 	isSavingAccount: PropTypes.bool.isRequired
 };

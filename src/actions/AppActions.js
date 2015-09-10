@@ -50,7 +50,7 @@ export function	saveRecentlyViewed(title, context){
 		recents = recents.slice(0, limit);
 	}
 
-	Cookie.save('recentlyViewed', recents);
+	Cookie.save('recentlyViewed', recents, {maxAge: 5 * 60});
 	//Cookie.remove('recentlyViewed');
 }
 

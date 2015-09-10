@@ -13,8 +13,14 @@ const initialState = {
 export function App(state = initialState, action = null) {
 	switch (action.type) {
 		case GET_RECENTLY_VIEWED:
+			let result;
+			if(_.isEmpty(action.recentlyViewed) ){
+				result = [];
+			} else {
+				result = action.recentlyViewed;
+			}
 			return _.assign({}, state, {
-				recentlyViewed: action.recentlyViewed
+				recentlyViewed: result
 			});
 		case FILE_UPLOADED:
 			return _.assign({}, state, {
