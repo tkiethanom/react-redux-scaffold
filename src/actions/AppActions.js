@@ -34,10 +34,10 @@ export function	saveRecentlyViewed(title, context){
 		recents = [];
 	}
 	
-	const url = context.props.location.pathname;	
+	const url = context.props.location.pathname;
 
 	//No duplicates allowed, so remove it and push a new one.
-	recents.map((row, index) => {	
+	recents.map((row, index) => {
 		if(row.url === url){
 			recents.splice(index, 1);
 			return false;
@@ -50,7 +50,9 @@ export function	saveRecentlyViewed(title, context){
 		recents = recents.slice(0, limit);
 	}
 
-	Cookie.save('recentlyViewed', recents, {maxAge: 5 * 60});
+	//Save Cookie for 7 days.
+	Cookie.save('recentlyViewed', recents, {maxAge: 7 * 24 * 60 * 60 });
+
 	//Cookie.remove('recentlyViewed');
 }
 

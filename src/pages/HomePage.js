@@ -41,7 +41,7 @@ export default class HomePage extends Component {
 		return (
 			<div>
 				<ReactCSSTransitionGroup transitionName="fadeIn" transitionAppear={true}>
-					<h1>Home</h1>
+					<h1>Dashboard</h1>
 
 					<AccountList accountRows={this.props.Account.accountRows}
 								 isFetchingAccounts={this.props.Account.isFetchingAccounts}/>

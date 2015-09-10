@@ -37,21 +37,19 @@ function receiveAccountView(json) {
   	};
 }
 
-export function fetchAccountView(accountId) {	
+export function fetchAccountView(accountId) {
   	// thunk middleware knows how to handle functions
   	return function next(dispatch) {
 	  	dispatch(requestAccountView());
 	    // Return a promise to wait for
 	    // (this is not required by thunk middleware, but it is convenient for us)    
-	    return fetch('http://localhost:9999/public/mock/account_' + accountId + '.json')
-	    //return fetch('http://tbg-staging-1.thebuddygroup.com:5000/api/accounts')
+	    //return fetch('http://localhost:9999/public/mock/account_' + accountId + '.json')
+	    return fetch('http://tbg-staging-1.thebuddygroup.com:5000/api/accounts/' + accountId)
 	    .then(response => response.json())
 	    .then(json => new Promise(resolve => {
 	        // We can dispatch many times!
-	        setTimeout(() => {
-	        	dispatch(receiveAccountView(json));
-	        	resolve();
-	        }, 1000);
+	        dispatch(receiveAccountView(json));
+	        resolve();
     	}));
 	};
 }
@@ -62,14 +60,13 @@ export function fetchAccounts() {
 	  	dispatch(requestAccounts());
 	    // Return a promise to wait for
 	    // (this is not required by thunk middleware, but it is convenient for us)    
-	    return fetch('http://localhost:9999/public/mock/accounts.json')
-	    //return fetch('http://tbg-staging-1.thebuddygroup.com:5000/api/accounts')
+	    //return fetch('http://localhost:9999/public/mock/accounts.json')
+	    return fetch('http://tbg-staging-1.thebuddygroup.com:5000/api/accounts')
 	    .then(response => response.json())
-	    .then(json =>      	
-	        // We can dispatch many times!
-	        setTimeout(() => {
-	        	dispatch(receiveAccounts(json));
-	        }, 1000)
+	    .then(json => {
+				// We can dispatch many times!
+				dispatch(receiveAccounts(json));
+			}
 	    );
 	};
 }

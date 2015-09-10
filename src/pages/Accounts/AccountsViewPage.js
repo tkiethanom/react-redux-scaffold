@@ -10,21 +10,15 @@ import { updateDocTitle, pageVisit } from 'actions/AppActions';
 require('styles/Accounts/accounts.scss');
 
 export default class AccountsViewPage extends Component {	
-	componentDidMount() {		
-		updateDocTitle('Account View');
+	componentWillMount() {
+		this.fetchAccountDetails(this.props);
+	}
 
-    	const { dispatch } = this.props;
-    	const data = this.props.Account.accountDetails;
-    	const accountId = parseInt(this.props.params.accountId, 10);
-
-    	if(_.isEmpty(data) || accountId !== data.id){
-    		dispatch(fetchAccountView(this.props.params.accountId)).then(() => {    
-    			pageVisit('Account - ' + this.props.Account.accountDetails.name, this);    				
-			});
-    	} else {
-    		pageVisit('Account - ' + this.props.Account.accountDetails.name, this);
-    	}
-  	}
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.params.accountId !== this.props.params.accountId) {
+			this.fetchAccountDetails(nextProps);
+		}
+	}
 
 	render() {
 		const ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
@@ -61,6 +55,18 @@ export default class AccountsViewPage extends Component {
 			</div>
 		);
 	}
+
+	fetchAccountDetails(props){
+		const { dispatch } = props;
+		const data = props.Account.accountDetails;
+		const accountId = parseInt(props.params.accountId, 10);
+
+		updateDocTitle('Account View');
+
+		dispatch(fetchAccountView(accountId)).then(() => {
+			pageVisit('Account - ' + this.props.Account.accountDetails.name, this);
+		});
+	}
 }
 
 AccountsViewPage.propTypes = {
@@ -69,7 +75,7 @@ AccountsViewPage.propTypes = {
 
 // Which props do we want to inject, given the global state?
 // Note: use https://github.com/faassen/reselect for better performance.
-function select(state) {	
+function select(state) {
 	return {
 		Account: state.Account,
 		App: state.App
