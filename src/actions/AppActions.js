@@ -2,6 +2,12 @@ import Cookie from 'react-cookie';
 
 export const GET_RECENTLY_VIEWED = 'GET_RECENTLY_VIEWED';
 
+export const FILE_UPLOADED = 'FILE_UPLOADED';
+
+export function fileUploaded(files){
+	return { type: FILE_UPLOADED, files: files};
+}
+
 function getRecentlyViewed(recentlyViewed) {
 	return { type: GET_RECENTLY_VIEWED, recentlyViewed: recentlyViewed };
 }
