@@ -7,6 +7,8 @@ import { Link } from 'react-router';
 import { fetchAccountView } from 'actions/Accounts/AccountActions';
 import { updateDocTitle, pageVisit } from 'actions/AppActions';
 
+import AccountDetails from 'components/Accounts/AccountDetails/AccountDetails';
+
 require('styles/Accounts/accounts.scss');
 
 export default class AccountsViewPage extends Component {	
@@ -22,34 +24,15 @@ export default class AccountsViewPage extends Component {
 
 	render() {
 		const ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
-		const data = this.props.Account.accountDetails;
 
-		let details;
-		let subtitle;
-		if (this.props.Account.isFetchingAccountView === false) {
-			details = (
-				<div className="accound-details">
-    				<div>Id: {data.id}</div>
-    				<div>Name: {data.name}</div>
-    				<div>Email: {data.email}</div>
-    				<div>Phone: {data.phone}</div>
-    			</div>
-			);
-			subtitle = (<span> - {data.name}</span>);
-		} else {
-			details = <div><img src="./public/img/ajax-loader.gif" /></div>;
-			subtitle = (<span>View</span>);
-		}
- 
 		return (
 			<div>
 				<ReactCSSTransitionGroup transitionName="fadeIn" transitionAppear={true} transitionLeave={false}>
 					<div>
-	        			<h1>Account {subtitle}</h1>
 	        			<div className="pull-right" >
 							<Link to="/campaigns/add">Add Campaign</Link>
 	        			</div>
-	        			{details}
+	        			<AccountDetails Account={this.props.Account} />
         			</div>
       			</ReactCSSTransitionGroup>
 			</div>
