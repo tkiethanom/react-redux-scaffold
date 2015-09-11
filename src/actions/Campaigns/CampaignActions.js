@@ -1,80 +1,78 @@
 import fetch from 'isomorphic-fetch';
 
-export const REQUEST_ADD_ACCOUNT = 'REQUEST_ADD_ACCOUNT';
-export const RECEIVE_ADD_ACCOUNT = 'RECEIVE_ADD_ACCOUNT';
+export const REQUEST_ADD_CAMPAIGN = 'REQUEST_ADD_CAMPAIGN';
+export const RECEIVE_ADD_CAMPAIGN = 'RECEIVE_ADD_CAMPAIGN';
 
-export const REQUEST_ACCOUNTS = 'REQUEST_ACCOUNTS';
-export const RECEIVE_ACCOUNTS = 'RECEIVE_ACCOUNTS';
+export const REQUEST_CAMPAIGNS = 'REQUEST_CAMPAIGNS';
+export const RECEIVE_CAMPAIGNS = 'RECEIVE_CAMPAIGNS';
 
-export const REQUEST_ACCOUNT_VIEW = 'REQUEST_ACCOUNT_VIEW';
-export const RECEIVE_ACCOUNT_VIEW = 'RECEIVE_ACCOUNT_VIEW';
+export const REQUEST_CAMPAIGN_VIEW = 'REQUEST_CAMPAIGN_VIEW';
+export const RECEIVE_CAMPAIGN_VIEW = 'RECEIVE_CAMPAIGN_VIEW';
 
-function requestAddAccount() {
-	return {type: REQUEST_ADD_ACCOUNT};
+function requestAddCampaign() {
+	return {type: REQUEST_ADD_CAMPAIGN};
 }
 
-function receiveAddAccount(json) {
-	return {type: RECEIVE_ADD_ACCOUNT, json};
+function receiveAddCampaign(json) {
+	return {type: RECEIVE_ADD_CAMPAIGN, json};
 }
 
-function requestAccounts() {
-	return {type: REQUEST_ACCOUNTS};
+function requestCampaigns() {
+	return {type: REQUEST_CAMPAIGNS};
 }
-function receiveAccounts(json) {
+function receiveCampaigns(json) {
 	return {
-		type: RECEIVE_ACCOUNTS,
-		accountRows: json.results
+		type: RECEIVE_CAMPAIGNS,
+		campaignRows: json.results
 	};
 }
 
-function requestAccountView() {
-	return {type: REQUEST_ACCOUNT_VIEW};
+function requestCampaignView() {
+	return {type: REQUEST_CAMPAIGN_VIEW};
 }
-function receiveAccountView(json) {
+function receiveCampaignView(json) {
 	return {
-		type: RECEIVE_ACCOUNT_VIEW,
-		accountDetails: json.result
+		type: RECEIVE_CAMPAIGN_VIEW,
+		campaignDetails: json.result
 	};
 }
 
-export function fetchAccountView(accountId) {
+export function fetchCampaignView(campaignId) {
 	// thunk middleware knows how to handle functions
 	return function next(dispatch) {
-		dispatch(requestAccountView());
+		dispatch(requestCampaignView());
 		// Return a promise to wait for
 		// (this is not required by thunk middleware, but it is convenient for us)
-		//return fetch('http://localhost:9999/public/mock/account_' + accountId + '.json')
-		return fetch('http://tbg-staging-1.thebuddygroup.com:5000/api/accounts/' + accountId)
+		return fetch('http://tbg-staging-1.thebuddygroup.com:5000/api/campaign/' + campaignId)
 			.then(response => response.json())
 			.then(json => new Promise(resolve => {
 				// We can dispatch many times!
-				dispatch(receiveAccountView(json));
+				dispatch(receiveCampaignView(json));
 				resolve();
 			}));
 	};
 }
 
-export function fetchAccounts() {
+export function fetchCampaigns(accountId) {
 	// thunk middleware knows how to handle functions
 	return function next(dispatch) {
-		dispatch(requestAccounts());
+		dispatch(requestCampaigns());
 		// Return a promise to wait for
 		// (this is not required by thunk middleware, but it is convenient for us)
-		//return fetch('http://localhost:9999/public/mock/accounts.json')
-		return fetch('http://tbg-staging-1.thebuddygroup.com:5000/api/accounts')
+		return fetch('http://tbg-staging-1.thebuddygroup.com:5000/api/campaigns?account_id' + accountId)
 			.then(response => response.json())
 			.then(json => {
 				// We can dispatch many times!
-				dispatch(receiveAccounts(json));
+				dispatch(receiveCampaigns(json));
 			}
 		);
 	};
 }
 
-export function saveAccount(data) {
+export function saveCampaign(data) {
 	// thunk middleware knows how to handle functions
 	return function next(dispatch) {
-		dispatch(requestAddAccount());
+		dispatch(requestAddCampaign());
 		// Return a promise to wait for
 		// (this is not required by thunk middleware, but it is convenient for us)
 		/*return fetch('http://localhost:9999/public/mock/accounts.json', {
@@ -92,7 +90,7 @@ export function saveAccount(data) {
 			.then(() =>
 				// We can dispatch many times!
 				setTimeout(() => {
-					dispatch(receiveAddAccount({
+					dispatch(receiveAddCampaign({
 						'created_at': '',
 						'email': 'test@gmail.com',
 						'id': 99,

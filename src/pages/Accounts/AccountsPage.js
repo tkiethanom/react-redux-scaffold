@@ -10,15 +10,15 @@ import { Link } from 'react-router';
 
 require('styles/Accounts/accounts.scss');
 
-export default class AccountsPage extends Component {	
-	componentDidMount() {						
+export default class AccountsPage extends Component {
+	componentDidMount() {
 		pageVisit('Accounts', this);
 
-    	const { dispatch } = this.props;
-    	if (this.props.Account.accountRows.length === 0) {
+		const { dispatch } = this.props;
+		if (this.props.Account.accountRows.length === 0) {
 			dispatch(fetchAccounts());
-    	}
-  	}
+		}
+	}
 
 	render() {
 		const ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
@@ -28,29 +28,30 @@ export default class AccountsPage extends Component {
 			<div>
 				<ReactCSSTransitionGroup transitionName="fadeIn" transitionAppear={true} transitionLeave={false}>
 					<div>
-	        			<h1>Accounts</h1>
-	        			<div className="pull-right" >
+						<h1>Accounts</h1>
+
+						<div className="pull-right">
 							<Link to="/accounts/add">Add Account</Link>
-	        			</div>
-        				<AccountForm onAddClick={text => dispatch(saveAccount(text))} isSavingAccount={this.props.Account.isSavingAccount} />
-	        			<AccountList accountRows={this.props.Account.accountRows} isFetchingAccounts={this.props.Account.isFetchingAccounts} />
-        			</div>
-      			</ReactCSSTransitionGroup>
+						</div>
+						<AccountForm onAddClick={text => dispatch(saveAccount(text))}
+									 isSavingAccount={this.props.Account.isSavingAccount}/>
+						<AccountList accountRows={this.props.Account.accountRows}
+									 isFetchingAccounts={this.props.Account.isFetchingAccounts}/>
+					</div>
+				</ReactCSSTransitionGroup>
 			</div>
 		);
 	}
 }
 
-AccountsPage.propTypes = {
-  	
-};
+AccountsPage.propTypes = {};
 
 // Which props do we want to inject, given the global state?
 // Note: use https://github.com/faassen/reselect for better performance.
-function select(state) {	
-  return {
-  	Account: state.Account
-  };
+function select(state) {
+	return {
+		Account: state.Account
+	};
 }
 
 // Wrap the component to inject dispatch and state into it

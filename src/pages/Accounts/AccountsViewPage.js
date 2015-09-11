@@ -29,12 +29,12 @@ export default class AccountsViewPage extends Component {
 			<div>
 				<ReactCSSTransitionGroup transitionName="fadeIn" transitionAppear={true} transitionLeave={false}>
 					<div>
-	        			<div className="pull-right" >
+						<div className="pull-right">
 							<Link to="/campaigns/add">Add Campaign</Link>
-	        			</div>
-	        			<AccountDetails Account={this.props.Account} />
-        			</div>
-      			</ReactCSSTransitionGroup>
+						</div>
+						<AccountDetails Account={this.props.Account}/>
+					</div>
+				</ReactCSSTransitionGroup>
 			</div>
 		);
 	}

@@ -2,11 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import RecentlyViewedRow from './RecentlyViewedRow';
 
 export default class RecentlyViewedList extends Component {
-	render() {		
+	render() {
 		let rows;
-		if(this.props.recentlyViewedRows !== undefined && this.props.recentlyViewedRows.length > 0){
+		if (this.props.recentlyViewedRows !== undefined && this.props.recentlyViewedRows.length > 0) {
 			rows = this.props.recentlyViewedRows.map((recentlyViewedRow, index) =>
-				<RecentlyViewedRow {...recentlyViewedRow} key={index} />
+					<RecentlyViewedRow {...recentlyViewedRow} key={index}/>
 			);
 		} else {
 			rows = '';
@@ -20,16 +20,16 @@ export default class RecentlyViewedList extends Component {
 				</tr>
 				</thead>
 				<tbody>
-					{rows}			
+				{rows}
 				</tbody>
 			</table>
 		);
 	}
 }
 
-RecentlyViewedList.propTypes = {	
+RecentlyViewedList.propTypes = {
 	recentlyViewedRows: PropTypes.arrayOf(PropTypes.shape({
 		title: PropTypes.string.isRequired,
-		url: PropTypes.string.isRequired		
+		url: PropTypes.string.isRequired
 	}).isRequired).isRequired
 };

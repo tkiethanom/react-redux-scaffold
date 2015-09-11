@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 
 export default class AccountDetails extends Component {
 	render() {
-		console.log(this.props.Account);
 		const data = this.props.Account.accountDetails;
 
 		let details;
@@ -18,11 +17,11 @@ export default class AccountDetails extends Component {
 					<div>{data.email}</div>
 
 					<div>Account Currency:</div>
-					<div><Link to={'/accounts/edit/' + data.id} >Edit</Link></div>
+					<div><Link to={'/accounts/edit/' + data.id}>Edit</Link></div>
 				</div>
 			);
 		} else {
-			details = <div><img src="./public/img/ajax-loader.gif" /></div>;
+			details = <div><img src="./public/img/ajax-loader.gif"/></div>;
 		}
 
 		return (<div>{details}</div>);

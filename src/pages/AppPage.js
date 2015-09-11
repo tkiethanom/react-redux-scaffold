@@ -14,12 +14,14 @@ export default class AppPage extends Component {
 		}
 	}
 
-	render() {	
+	render() {
 		return (
 			<div>
 				<TopBar {...this.props} />
+
 				<div className="container">
-					<SideBar accountRows={this.props.Account.accountRows} />
+					<SideBar accountRows={this.props.Account.accountRows}/>
+
 					<div className="col-md-9">
 						{this.props.children}
 					</div>
@@ -29,9 +31,7 @@ export default class AppPage extends Component {
 	}
 }
 
-AppPage.propTypes = {
-
-};
+AppPage.propTypes = {};
 
 // Which props do we want to inject, given the global state?
 // Note: use https://github.com/faassen/reselect for better performance.

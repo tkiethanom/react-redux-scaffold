@@ -30,9 +30,9 @@ export default class HomePage extends Component {
 		const ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 		let filesMarkup;
-		if (_.isEmpty(this.props.App.files) === false ) {
+		if (_.isEmpty(this.props.App.files) === false) {
 			filesMarkup = this.props.App.files.map((file, index) =>
-				<img src={file.preview} style={{width: '100px'}} key={'uploaded' + index}/>
+					<img src={file.preview} style={{width: '100px'}} key={'uploaded' + index}/>
 			);
 		} else {
 			filesMarkup = '';
@@ -43,10 +43,11 @@ export default class HomePage extends Component {
 				<ReactCSSTransitionGroup transitionName="fadeIn" transitionAppear={true}>
 					<h1>Dashboard</h1>
 
+					<div><strong>Accounts</strong></div>
 					<AccountList accountRows={this.props.Account.accountRows}
 								 isFetchingAccounts={this.props.Account.isFetchingAccounts}/>
 					<RecentlyViewedList recentlyViewedRows={this.props.App.recentlyViewed}/>
-					<Calendar defaultValue={date} showToday={true} onSelect={this.handleDateSelect} />
+					<Calendar defaultValue={date} showToday={true} onSelect={this.handleDateSelect}/>
 					<Dropzone onDrop={(files) => this.handleFileUpload(files) } multiple={false} style={
 							{
 								width: '100px',
@@ -56,7 +57,7 @@ export default class HomePage extends Component {
 								borderStyle: 'dashed',
 								borderRadius: '5px'
 							}
-						} >
+						}>
 						<div>Try dropping some a file here, or click to select a file to upload.</div>
 					</Dropzone>
 					{filesMarkup}
@@ -65,11 +66,11 @@ export default class HomePage extends Component {
 		);
 	}
 
-	handleDateSelect(gCal){
+	handleDateSelect(gCal) {
 		//console.log(new Date(gCal.getTime() ) );
 	}
 
-	handleFileUpload(files){
+	handleFileUpload(files) {
 		const { dispatch } = this.props;
 		dispatch(fileUploaded(files));
 	}

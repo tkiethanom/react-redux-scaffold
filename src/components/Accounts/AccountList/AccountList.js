@@ -6,10 +6,14 @@ export default class AccountList extends Component {
 		let rows;
 		if (this.props.isFetchingAccounts === false) {
 			rows = this.props.accountRows.map((accountRow, index) =>
-						<AccountRow {...accountRow} key={index} />
-					);
+					<AccountRow {...accountRow} key={index}/>
+			);
 		} else {
-			rows = <tr><td><img src="./public/img/ajax-loader.gif" /></td></tr>;
+			rows = (
+				<tr>
+					<td><img src="./public/img/ajax-loader.gif"/></td>
+				</tr>
+			);
 		}
 
 		return (
@@ -21,15 +25,15 @@ export default class AccountList extends Component {
 					<th>Phone</th>
 				</tr>
 				</thead>
-				<tbody>{rows}			
-					
+				<tbody>{rows}
+
 				</tbody>
 			</table>
 		);
 	}
 }
 
-AccountList.propTypes = {	
+AccountList.propTypes = {
 	accountRows: PropTypes.arrayOf(PropTypes.shape({
 		name: PropTypes.string.isRequired,
 		email: PropTypes.string.isRequired,

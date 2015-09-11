@@ -16,20 +16,20 @@ const store = finalCreateStore(reducer);
 
 export default class App extends Component {
 	render() {
-		let devtools = null;    
+		let devtools = null;
 		if (typeof __DEVTOOLS__ !== 'undefined' && __DEVTOOLS__ === true) {
 			const { DevTools, DebugPanel, LogMonitor } = require('redux-devtools/lib/react');
 			devtools = (
 				<DebugPanel top right bottom>
 					<DevTools store={store}
-					monitor={LogMonitor} />
+							  monitor={LogMonitor}/>
 				</DebugPanel>
 			);
 		}
 		return (
 			<div>
 				<Provider store={store}>
-					{() => <Routes history={history} />}
+					{() => <Routes history={history}/>}
 				</Provider>
 				{devtools}
 			</div>
