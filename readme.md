@@ -12,6 +12,8 @@ Write in progress, issues are welcomed.
 
 `gulp build:dist` to build production code in the /dist directory.
 
+`node node_modules/karma/bin/karma start` to run tests.
+
 ## Features
 
 - ES6+ support
